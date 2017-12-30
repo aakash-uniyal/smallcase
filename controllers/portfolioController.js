@@ -17,7 +17,23 @@ router.get('/:id', (req, res) => {
             res.status(b.code).send(b.message)
             return
         }
-        res.send(reply)
+
+        th.find({ portfolio: req.params.id }, (err, results) => {
+            if (err) {
+                let b = eh('SERVER_ERROR', err)
+                res.status(b.code).send(b.message)
+                return
+            }
+            
+            response = {
+                "id": reply["_id"],
+                "return": reply["return"]
+            }
+
+            if (results && results.length)
+                response.trades = results
+            res.send(response)
+        })
     })
 })
 
