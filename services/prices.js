@@ -1,5 +1,6 @@
 const Promise = require('bluebird'),
-      rp = require('request-promise')
+      rp = require('request-promise'),
+      config = require('config')
 const eh = require('../handlers/errors')
 
 module.exports = {
@@ -7,14 +8,14 @@ module.exports = {
         const qs = {
             function: 'TIME_SERIES_INTRADAY',
             symbol: ticker,
-            apikey: '1ZEFBXPKUMKDQ0W1',
+            apikey: config.get("vendor.apikey"),
             interval: '1min'
         }
 
         return new Promise((resolve, reject) => {
             rp({
                 method: 'GET',
-                uri: 'https://www.alphavantage.co/query',
+                uri: config.get("vendor.uri"),
                 qs: qs,
                 json: true
             }).then(response => {

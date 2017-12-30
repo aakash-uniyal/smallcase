@@ -1,7 +1,11 @@
-const mongoose = require('mongoose')
-mongoose.Promise = require('bluebird')
+const mongoose = require('mongoose'),
+      config = require('config')
 
-mongoose.connect('mongodb://localhost/smallcase')
+mongoose.Promise = require('bluebird')
+murl = config.get("mongo.url")
+mdb = config.get("mongo.db")
+
+mongoose.connect(murl + mdb)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error: '))
 db.once('open', () => {

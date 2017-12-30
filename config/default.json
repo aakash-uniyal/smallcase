@@ -1,0 +1,12 @@
+{
+    "root": "/api/v1",
+    "port": 3000,
+    "mongo": {
+        "url": "mongodb://localhost/",
+        "db": "smallcase"
+    },
+    "vendor": {
+        "uri": "https://www.alphavantage.co/query",
+        "apikey": "1ZEFBXPKUMKDQ0W1"
+    }
+}
