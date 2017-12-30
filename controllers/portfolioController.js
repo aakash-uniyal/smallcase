@@ -29,7 +29,7 @@ router.post('/', (req, res) => {
             res.status(b.code).send(b.message)
             return
         }
-        res.send({ success: true })
+        res.send(p)
     })
 })
 
